@@ -1,0 +1,144 @@
+<div class="min-h-screen bg-white">
+  <!-- Seção principal -->
+  <section
+    class="bg-blue-900 text-white py-16 px-4 md:px-8 flex flex-col md:flex-row items-center justify-between"
+  >
+    <div class="md:w-1/2 mb-8 md:mb-0">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">
+        Forte. Seguro. Incrível.
+      </h1>
+      <h2 class="text-2xl md:text-3xl font-bold mb-4">
+        Experimente nosso gerador de senhas aleatórias.
+      </h2>
+      <p class="text-lg mb-4">
+        Crie senhas fortes e seguras para proteger suas contas online.
+      </p>
+    </div>
+
+    <div class="md:w-5/12 bg-white text-black p-6 rounded-lg shadow-lg">
+      <h3 class="text-xl font-semibold mb-4">Gerador de Senhas</h3>
+
+      <div class="mb-4">
+        <div class="flex justify-between mb-2">
+          <label>Comprimento da senha</label>
+          <span>{{ passwordRequest.Length }} caracteres</span>
+        </div>
+        <p-slider
+          [(ngModel)]="passwordRequest.Length"
+          [min]="4"
+          [max]="32"
+          [step]="1"
+          class="w-full"
+          (onSlideEnd)="generatePassword()"
+        ></p-slider>
+      </div>
+
+      <div class="mb-4">
+        <div class="flex items-center mb-2">
+          <p-checkbox
+            [(ngModel)]="passwordRequest.IncludeNumbers"
+            [binary]="true"
+            inputId="numbers"
+          ></p-checkbox>
+          <label for="numbers" class="ml-2">Números (0-9)</label>
+        </div>
+
+        <div class="flex items-center mb-2">
+          <p-checkbox
+            [(ngModel)]="passwordRequest.IncludeSpecialChars"
+            [binary]="true"
+            inputId="symbols"
+          ></p-checkbox>
+          <label for="symbols" class="ml-2">Símbolos (!#$%)</label>
+        </div>
+
+        <div class="flex items-center mb-2">
+          <p-checkbox
+            [(ngModel)]="passwordRequest.IncludeUppercase"
+            [binary]="true"
+            inputId="uppercase"
+          ></p-checkbox>
+          <label for="uppercase" class="ml-2">Letras maiúsculas (A-Z)</label>
+        </div>
+      </div>
+
+      <div
+        class="mb-4 p-3 bg-gray-100 rounded flex justify-between items-center"
+      >
+        <span class="font-mono text-lg">{{ generatedPassword }}</span>
+        <button
+          pButton
+          icon="pi pi-copy"
+          (click)="copyPassword()"
+          class="p-button-text"
+        ></button>
+      </div>
+
+      <div class="mb-4">
+        <div class="flex justify-between mb-2">
+          <span>Força da senha</span>
+          <span>{{ getStrengthText() }}</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2.5">
+          <div
+            class="h-2.5 rounded-full transition-all duration-300 {{ getStrengthColor() }}"
+            [style.width.%]="getStrengthPercentage()"
+          ></div>
+        </div>
+      </div>
+
+      <button
+        pButton
+        label="Gerar Senha"
+        (click)="generatePassword()"
+        class="w-full p-button-primary"
+      ></button>
+    </div>
+  </section>
+
+
+  <!-- Seção de importância das senhas -->
+  <section class="py-12 px-4 md:px-8">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6">
+        Por que senhas fortes são importantes
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-semibold mb-3">Proteção contra ataques</h3>
+          <p>
+            Senhas fortes são mais difíceis de serem descobertas por hackers que
+            utilizam técnicas de força bruta ou dicionário para invadir contas.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-semibold mb-3">
+            Segurança de dados pessoais
+          </h3>
+          <p>
+            Suas informações pessoais e financeiras ficam mais protegidas quando
+            você utiliza senhas complexas e únicas para cada serviço.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-semibold mb-3">Evite o reuso de senhas</h3>
+          <p>
+            Usar a mesma senha em vários sites é perigoso. Se um site for
+            comprometido, todas as suas contas estarão em risco.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-semibold mb-3">Atualize regularmente</h3>
+          <p>
+            Alterar suas senhas periodicamente e usar nosso gerador para criar
+            novas senhas fortes aumenta significativamente sua segurança online.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
