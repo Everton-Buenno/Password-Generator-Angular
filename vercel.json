@@ -2,8 +2,7 @@
   "rewrites": [
     { 
       "source": "/api",
-      "destination": "${LAMBDA_URL}",
-      "methods": ["GET", "POST", "OPTIONS"]
+      "destination": "${LAMBDA_URL}"
     }
   ],
   "headers": [
